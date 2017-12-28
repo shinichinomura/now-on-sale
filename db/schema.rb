@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171223110228) do
+ActiveRecord::Schema.define(version: 20171228162832) do
 
   create_table "publications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "serial_id", null: false
@@ -30,5 +30,21 @@ ActiveRecord::Schema.define(version: 20171223110228) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "twitter_auths", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id", null: false
+    t.bigint "uid", null: false
+    t.string "nickname", limit: 64, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["uid"], name: "index_twitter_auths_on_uid", unique: true
+    t.index ["user_id"], name: "index_twitter_auths_on_user_id", unique: true
+  end
+
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "publications", "serials", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "twitter_auths", "users", on_update: :cascade, on_delete: :cascade
 end
