@@ -1,1 +1,8 @@
-= link_to 'Twitterログイン', '/auth/twitter'
+#SerialsIndex
+  .search
+    = text_field_tag :keyword, '', 'v-on:keyup' => "search"
+
+= javascript_pack_tag 'serials/index'
+
+.login
+  = link_to 'Twitterログイン', '/auth/twitter'
