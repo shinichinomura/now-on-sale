@@ -1,6 +1,15 @@
 #SerialsIndex
   .search
     = text_field_tag :keyword, '', 'v-on:keyup' => "search"
+  .result
+    ul
+      li v-for="serial in serials" :key="serial.id"
+        | {{ serial.title }}
+
+        button type="submit" v-on:click="unsubscribe(serial.id)" v-if="subscriptions[serial.id]"
+          | 購読解除
+        button type="submit" v-on:click="subscribe(serial.id)" v-else=""
+          | 購読
 
 = javascript_pack_tag 'serials/index'
 
