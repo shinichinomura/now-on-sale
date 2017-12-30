@@ -11,6 +11,18 @@
         button type="submit" v-on:click="subscribe(serial.id)" v-else=""
           | 購読
 
+  .subscriptions
+    h2
+      | 現在購読中のシリーズ一覧
+    ul
+      - @subscriptions.each do |subscription|
+        li
+          = subscription.serial.title
+          button type="submit" v-on:click="unsubscribe(#{subscription.serial_id})" v-if="subscriptions[#{subscription.serial_id}]"
+            | 購読解除
+          button type="submit" v-on:click="subscribe(#{subscription.serial_id})" v-else=""
+            | 購読
+
 = javascript_pack_tag 'serials/index'
 
 .login
