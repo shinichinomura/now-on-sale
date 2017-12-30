@@ -10,13 +10,27 @@ class SubscriptionsController < ApplicationController
   end
 
   def create
-    current_user.subscriptions.create!(serial_id: params[:serial_id])
+    Subscription.transaction do
+      current_user.subscriptions.create!(serial_id: params[:serial_id])
+      SubscriptionHistory.create!(
+        user_id: current_user.id,
+        serial_id: params[:serial_id],
+        action: 'create'
+      )
+    end
 
     render json: { result: 'success' }
   end
 
   def delete
-    current_user.subscriptions.find_by_serial_id(params[:serial_id]).destroy
+    Subscription.transaction do
+      current_user.subscriptions.find_by_serial_id(params[:serial_id]).destroy
+      SubscriptionHistory.create!(
+        user_id: current_user.id,
+        serial_id: params[:serial_id],
+        action: 'delete'
+      )
+    end
 
     render json: { result: 'success' }
   end

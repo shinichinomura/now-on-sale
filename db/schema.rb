@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171229133740) do
+ActiveRecord::Schema.define(version: 20171230131041) do
 
   create_table "publications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "serial_id", null: false
@@ -28,6 +28,16 @@ ActiveRecord::Schema.define(version: 20171229133740) do
     t.string "title", limit: 256, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "subscription_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id", null: false
+    t.bigint "serial_id", null: false
+    t.string "action", limit: 8, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["serial_id"], name: "index_subscription_histories_on_serial_id"
+    t.index ["user_id"], name: "index_subscription_histories_on_user_id"
   end
 
   create_table "subscriptions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
