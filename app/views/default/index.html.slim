@@ -1,7 +1,9 @@
 #SerialsIndex
   .search
-    = text_field_tag :keyword, '', 'v-on:keyup' => "search"
+    = text_field_tag :keyword, '', 'v-on:keyup' => "search", placeholder: "作品を検索する"
   .result
+    h2
+      | 検索結果
     ul
       li v-for="serial in serials" :key="serial.id"
         | {{ serial.title }}
@@ -11,19 +13,23 @@
         button type="submit" v-on:click="subscribe(serial.id)" v-else=""
           | 購読
 
-  .subscriptions
-    h2
-      | 現在購読中のシリーズ一覧
-    ul
-      - @subscriptions.each do |subscription|
-        li
-          = subscription.serial.title
-          button type="submit" v-on:click="unsubscribe(#{subscription.serial_id})" v-if="subscriptions[#{subscription.serial_id}]"
-            | 購読解除
-          button type="submit" v-on:click="subscribe(#{subscription.serial_id})" v-else=""
-            | 購読
+  - if @current_user.present?
+    .subscriptions
+      h2
+        | 現在購読中のシリーズ一覧
+      ul
+        - @subscriptions.each do |subscription|
+          li
+            span
+              = subscription.serial.title
+            button type="submit" v-on:click="unsubscribe(#{subscription.serial_id})" v-if="subscriptions[#{subscription.serial_id}]"
+              | 購読解除
+            button type="submit" v-on:click="subscribe(#{subscription.serial_id})" v-else=""
+              | 購読
 
 = javascript_pack_tag 'serials/index'
 
 .login
-  = link_to 'Twitterログイン', '/auth/twitter'
+  = link_to '/auth/twitter', class: 'twitter-login' do
+    = fa_icon 'twitter'
+    | Twitterログイン

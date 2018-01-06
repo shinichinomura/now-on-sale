@@ -1,5 +1,7 @@
 class DefaultController < ApplicationController
   def index
-    @subscriptions = current_user.subscriptions.includes(:serial)
+    if current_user.present?
+      @subscriptions = current_user.subscriptions.includes(:serial)
+    end
   end
 end

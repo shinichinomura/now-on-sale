@@ -10,6 +10,44 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require font-awesome
  *= require_tree .
  *= require_self
  */
+
+@import "font-awesome";
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+h2 {
+  font-size: 100%;
+  padding: .4rem .8rem;
+  font-weight: normal;
+  background-color: green;
+  color: #fff;
+}
+
+.login {
+  text-align: center;
+  margin-top: 2rem;
+
+  .twitter-login {
+    i {
+      margin-right: .4rem;
+    }
+
+    border-radius: 2rem;
+    text-decoration: none;
+    background-color: #1da1f2;
+    color: #fff;
+    padding: .8rem 1.6rem;
+  }
+}
