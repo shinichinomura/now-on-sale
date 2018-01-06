@@ -10,6 +10,9 @@
 #SerialsIndex
   .search
     = text_field_tag :keyword, '', 'v-on:keyup' => "search", placeholder: "作品を検索する"
+  - unless @current_user.present?
+    .information
+      | 新刊発売情報を購読するにはログインが必要です。
   .result
     h2
       | 検索結果
