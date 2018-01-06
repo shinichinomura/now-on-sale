@@ -1,5 +1,12 @@
 #Header
   = image_tag 'logo@2x.png', size: '172x40'
+
+- unless @current_user.present?
+  .login
+    = link_to '/auth/twitter', class: 'twitter-login' do
+      = fa_icon 'twitter'
+      | Twitterログイン
+
 #SerialsIndex
   .search
     = text_field_tag :keyword, '', 'v-on:keyup' => "search", placeholder: "作品を検索する"
@@ -30,9 +37,3 @@
               | 購読
 
 = javascript_pack_tag 'serials/index'
-
-- unless @current_user.present?
-  .login
-    = link_to '/auth/twitter', class: 'twitter-login' do
-      = fa_icon 'twitter'
-      | Twitterログイン
