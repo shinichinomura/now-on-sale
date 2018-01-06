@@ -1,4 +1,10 @@
 class PublicationNotifier
+  def self.notify_all
+    User.find_each do |user|
+      self.new(user_id: user.id).notify
+    end
+  end
+
   def initialize(date: Date.current, user_id:)
     @date = date
     @user = User.find(user_id)
