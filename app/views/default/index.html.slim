@@ -29,7 +29,8 @@
 
 = javascript_pack_tag 'serials/index'
 
-.login
-  = link_to '/auth/twitter', class: 'twitter-login' do
-    = fa_icon 'twitter'
-    | Twitterログイン
+- unless @current_user.present?
+  .login
+    = link_to '/auth/twitter', class: 'twitter-login' do
+      = fa_icon 'twitter'
+      | Twitterログイン
