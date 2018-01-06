@@ -35,6 +35,22 @@ h2 {
   color: #fff;
 }
 
+#Flash {
+  margin-bottom: 1rem;
+  background-color: darkorange;
+  color: white;
+
+  ul {
+    margin: 0;
+    padding: 0;
+
+    li {
+      list-style: none;
+      padding: 1rem;
+    }
+  }
+}
+
 #Header {
   padding: 1rem;
 }

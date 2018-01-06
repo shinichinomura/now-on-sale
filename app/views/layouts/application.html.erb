@@ -11,6 +11,15 @@
   </head>
 
   <body>
+    <% if flash.present? %>
+      <div id="Flash">
+        <ul>
+          <% flash.each do |key, message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
     <%= yield %>
   </body>
 </html>

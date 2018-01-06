@@ -19,5 +19,9 @@ class Auth::CallbackController < ApplicationController
         session[:user_id] = new_user.id
       end
     end
+
+    flash[:notice] = "ログインしました。"
+
+    redirect_to :root
   end
 end
