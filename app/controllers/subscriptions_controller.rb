@@ -2,8 +2,10 @@ class SubscriptionsController < ApplicationController
   def index
     return_hash = {}
 
-    current_user.subscriptions.each do |subscription|
-      return_hash[subscription.serial_id] = true
+    if logged_in?
+      current_user.subscriptions.each do |subscription|
+        return_hash[subscription.serial_id] = true
+      end
     end
 
     render json: return_hash.to_json

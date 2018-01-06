@@ -8,4 +8,8 @@ class ApplicationController < ActionController::Base
   def set_current_user
     @current_user = User.find_by_id(session[:user_id])
   end
+
+  def logged_in?
+    session[:user_id].present?
+  end
 end
