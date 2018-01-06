@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   delete '/subscriptions', to: 'subscriptions#delete'
 
   get '/auth/twitter/callback', to: 'auth/callback#twitter'
+  get '/logout', to: 'sessions#destroy'
 end
