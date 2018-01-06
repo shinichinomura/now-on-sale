@@ -17,8 +17,6 @@ gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
@@ -31,9 +29,6 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
 gem 'mechanize'
 gem 'omniauth-twitter'
 gem 'slim-rails'
@@ -41,6 +36,7 @@ gem 'webpacker', github: 'rails/webpacker'
 gem 'font-awesome-rails'
 gem 'twitter'
 gem 'clockwork'
+gem 'daemons' # for capistrano-clockwork
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -51,6 +47,13 @@ group :development, :test do
 
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+
+  gem 'capistrano', require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano-rails', require: false
+  gem 'capistrano3-puma', require: false
+  gem 'capistrano-rails-console', require: false
+  gem 'capistrano-clockwork'
 end
 
 group :development do
@@ -62,6 +65,11 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 
   gem 'foreman'
+end
+
+group :production do
+  # See https://github.com/rails/execjs#readme for more supported runtimes
+  gem 'therubyracer', platforms: :ruby
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
