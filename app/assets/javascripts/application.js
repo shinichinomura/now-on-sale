@@ -12,4 +12,9 @@
 //
 //= require rails-ujs
 //= require turbolinks
+//= require jquery
 //= require_tree .
+
+$(document).ready(function(){
+  $('#Flash').delay(3000).slideUp(500);
+});
