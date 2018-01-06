@@ -29,14 +29,16 @@ new Vue({
         var vm = this;
 
         timer_id = setTimeout(function(){
-          axios.get(
-            '/serials',
-            {
-              params: { query: event.target.value }
-            }
-          ).then(function(response){
-            vm.serials = response.data;
-          })
+          if (event.target.value != '') {
+            axios.get(
+              '/serials',
+              {
+                params: { query: event.target.value }
+              }
+            ).then(function(response){
+              vm.serials = response.data;
+            })
+          }
         }, 1000);
       };
     })(),
