@@ -255,6 +255,8 @@ GEM
     selenium-webdriver (3.8.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
+    serviceworker-rails (0.5.5)
+      railties (>= 3.1)
     simple_oauth (0.3.1)
     slim (3.0.9)
       temple (>= 0.7.6, < 0.9)
@@ -349,6 +351,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 5.0)
   selenium-webdriver
+  serviceworker-rails
   slim-rails
   spring
   spring-watcher-listen (~> 2.0.0)
