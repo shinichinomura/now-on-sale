@@ -13,9 +13,4 @@
 //= require rails-ujs
 //= require turbolinks
 //= require jquery
-//= require_tree .
-
-$(document).ready(function(){
-  $('#Flash').delay(3000).slideUp(500);
-});
-//= require serviceworker-companion
+//= require_tree ./application_tree
