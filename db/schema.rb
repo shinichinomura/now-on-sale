@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171230131041) do
+ActiveRecord::Schema.define(version: 20180108120257) do
 
   create_table "publications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "serial_id", null: false
@@ -28,6 +28,15 @@ ActiveRecord::Schema.define(version: 20171230131041) do
     t.string "title", limit: 256, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "service_worker_push_subscriptions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id", null: false
+    t.string "registration_id", limit: 256, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "registration_id"], name: "index_sw_push_subscriptions_on_user_id_and_registration_id", unique: true
+    t.index ["user_id"], name: "index_service_worker_push_subscriptions_on_user_id"
   end
 
   create_table "subscription_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -65,6 +74,7 @@ ActiveRecord::Schema.define(version: 20171230131041) do
   end
 
   add_foreign_key "publications", "serials", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "service_worker_push_subscriptions", "users", on_update: :cascade, on_delete: :cascade
   add_foreign_key "subscriptions", "serials", on_update: :cascade, on_delete: :cascade
   add_foreign_key "subscriptions", "users", on_update: :cascade, on_delete: :cascade
   add_foreign_key "twitter_auths", "users", on_update: :cascade, on_delete: :cascade
