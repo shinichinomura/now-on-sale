@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180108120257) do
+ActiveRecord::Schema.define(version: 20180109143058) do
 
   create_table "publications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "serial_id", null: false
@@ -22,6 +22,22 @@ ActiveRecord::Schema.define(version: 20180108120257) do
     t.index ["date_max"], name: "index_publications_on_date_max"
     t.index ["date_min"], name: "index_publications_on_date_min"
     t.index ["serial_id", "title"], name: "index_publications_on_serial_id_and_title", unique: true
+  end
+
+  create_table "push_notification_fetch_logs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "push_notification_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["push_notification_id"], name: "fk_rails_421d5f1aa3"
+  end
+
+  create_table "push_notifications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "subscription_id", null: false
+    t.bigint "publication_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["publication_id"], name: "fk_rails_2c34333f1c"
+    t.index ["subscription_id"], name: "fk_rails_e5848ada5f"
   end
 
   create_table "serials", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -74,6 +90,9 @@ ActiveRecord::Schema.define(version: 20180108120257) do
   end
 
   add_foreign_key "publications", "serials", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "push_notification_fetch_logs", "push_notifications", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "push_notifications", "publications", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "push_notifications", "service_worker_push_subscriptions", column: "subscription_id", on_update: :cascade, on_delete: :cascade
   add_foreign_key "service_worker_push_subscriptions", "users", on_update: :cascade, on_delete: :cascade
   add_foreign_key "subscriptions", "serials", on_update: :cascade, on_delete: :cascade
   add_foreign_key "subscriptions", "users", on_update: :cascade, on_delete: :cascade
