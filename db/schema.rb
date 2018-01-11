@@ -32,12 +32,12 @@ ActiveRecord::Schema.define(version: 20180109143058) do
   end
 
   create_table "push_notifications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "subscription_id", null: false
+    t.bigint "service_worker_push_subscription_id", null: false
     t.bigint "publication_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["publication_id"], name: "fk_rails_2c34333f1c"
-    t.index ["subscription_id"], name: "fk_rails_e5848ada5f"
+    t.index ["service_worker_push_subscription_id"], name: "fk_rails_5226f0c62c"
   end
 
   create_table "serials", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 20180109143058) do
   add_foreign_key "publications", "serials", on_update: :cascade, on_delete: :cascade
   add_foreign_key "push_notification_fetch_logs", "push_notifications", on_update: :cascade, on_delete: :cascade
   add_foreign_key "push_notifications", "publications", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "push_notifications", "service_worker_push_subscriptions", column: "subscription_id", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "push_notifications", "service_worker_push_subscriptions", on_update: :cascade, on_delete: :cascade
   add_foreign_key "service_worker_push_subscriptions", "users", on_update: :cascade, on_delete: :cascade
   add_foreign_key "subscriptions", "serials", on_update: :cascade, on_delete: :cascade
   add_foreign_key "subscriptions", "users", on_update: :cascade, on_delete: :cascade
