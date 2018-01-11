@@ -5,7 +5,8 @@ class NotifierFactory
 
   def notifiers
     [
-      TwitterNotifier.new(user_id: @user_id)
+      TwitterNotifier.new(user_id: @user_id),
+      ServiceWorkerPushNotifier.new(user_id: @user_id)
     ]
   end
 end
