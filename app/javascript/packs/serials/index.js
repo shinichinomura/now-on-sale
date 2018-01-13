@@ -45,14 +45,49 @@ new Vue({
     subscribe: function(serial_id){
       var vm = this;
 
-      axios.post(
-        '/subscriptions',
-        {
-          serial_id: serial_id
-        }
-      ).then(function(response){
-        Vue.set(vm.subscriptions, serial_id, true);
-      })
+      navigator.serviceWorker.ready
+        .then(function(registration) {
+          console.log('[Companion]', 'Service worker registered!');
+
+          return registration.pushManager.getSubscription().then(function(subscription) {
+            if (subscription) {
+              return subscription;
+            }
+            return registration.pushManager.subscribe({
+              userVisibleOnly: true
+            });
+          })
+        }).then(function(subscription) {
+          var endpoint = subscription.endpoint;
+          var registration_id = endpoint.replace("https://android.googleapis.com/gcm/send/", "");
+
+          console.log('[Companion]', "pushManager endpoint:", endpoint);
+
+          $.post('/service_worker_push_subscriptions',
+            {
+              registration_id: registration_id
+            },
+            function(data) {
+              if (data.result == 'success') {
+                console.log('[Companion]', "pushManager endpoint saved (or already saved).");
+
+                axios.post(
+                  '/subscriptions',
+                  {
+                    serial_id: serial_id
+                  }
+                ).then(function(response){
+                  Vue.set(vm.subscriptions, serial_id, true);
+                })
+              }
+              else {
+                console.log('[Companion]', "pushManager endpoint couldn't be saved.");
+              }
+            }
+          );
+        }).catch(function(error) {
+          console.warn('[Companion]', "serviceWorker error:", error);
+        });
     },
     unsubscribe: function(serial_id){
       var vm = this;
