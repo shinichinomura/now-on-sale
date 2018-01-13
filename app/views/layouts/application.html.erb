@@ -23,7 +23,9 @@
       </div>
     <% end %>
     <div id="Header">
-      <%= image_tag 'logo@2x.png', size: '172x40' %>
+      <%= link_to root_path do %>
+        <%= image_tag 'logo@2x.png', size: '172x40' %>
+      <% end %>
     </div>
     <%= yield %>
   </body>

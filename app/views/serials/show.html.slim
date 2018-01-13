@@ -1,0 +1,9 @@
+h2
+  = "「#{@serial.title}」の発売日一覧"
+
+ul.serial-publication-list
+  - @publications.each do |publication|
+    li
+      .date = publication.date_min.strftime('%Y年%m月%d日')
+      .title = publication.title
+

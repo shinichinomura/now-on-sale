@@ -1,0 +1,17 @@
+ul.serial-publication-list {
+  list-style: none;
+  margin-left: 1rem;
+  padding-left: 0;
+
+  li {
+    margin-bottom: .5rem;
+
+    .date {
+      font-size: 1.4rem;
+    }
+
+    .title {
+      margin-left: 1rem;
+    }
+  }
+}

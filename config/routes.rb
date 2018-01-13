@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root to: 'default#index'
 
-  resources :serials, only: [:index]
+  resources :serials, only: [:index, :show]
   resources :subscriptions, only: [:index, :create]
   delete '/subscriptions', to: 'subscriptions#delete'
   resources :service_worker_push_subscriptions, only: [:create]

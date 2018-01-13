@@ -15,7 +15,8 @@
       | 検索結果
     ul
       li v-for="serial in serials" :key="serial.id"
-        | {{ serial.title }}
+        a :href="'/serials/' + serial.id"
+          | {{ serial.title }}
 
         button type="submit" disabled=@current_user.blank? v-on:click="unsubscribe(serial.id)" v-if="subscriptions[serial.id]"
           | 購読解除
@@ -30,7 +31,7 @@
         - @subscriptions.each do |subscription|
           li
             span
-              = subscription.serial.title
+              = link_to subscription.serial.title, serial_path(subscription.serial)
             button type="submit" v-on:click="unsubscribe(#{subscription.serial_id})" v-if="subscriptions[#{subscription.serial_id}]"
               | 購読解除
             button type="submit" v-on:click="subscribe(#{subscription.serial_id})" v-else=""
