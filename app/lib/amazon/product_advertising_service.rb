@@ -30,7 +30,7 @@ class Amazon::ProductAdvertisingService
 
     items = response.dig('ItemSearchResponse', 'Items', 'Item')
 
-    return nil if items.count == 0
+    return nil if items.nil? || items.count == 0
 
     items.first
   end
