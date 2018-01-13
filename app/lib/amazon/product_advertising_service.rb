@@ -28,9 +28,16 @@ class Amazon::ProductAdvertisingService
       raise error
     end
 
-    items = response.dig('ItemSearchResponse', 'Items', 'Item')
+    items = case response.dig('ItemSearchResponse', 'Items', 'TotalResults').to_i
+            when 0
+              []
+            when 1
+              [response.dig('ItemSearchResponse', 'Items', 'Item')]
+            else
+              response.dig('ItemSearchResponse', 'Items', 'Item')
+            end
 
-    return nil if items.nil? || items.count == 0
+    return nil if items.count == 0
 
     items.first
   end
