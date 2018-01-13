@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180109143058) do
+ActiveRecord::Schema.define(version: 20180113125719) do
+
+  create_table "amazon_item_attributes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "publication_id", null: false
+    t.string "asin", limit: 64, null: false
+    t.string "detail_page_url", limit: 1024, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["publication_id"], name: "index_amazon_item_attributes_on_publication_id", unique: true
+  end
 
   create_table "publications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "serial_id", null: false
@@ -89,6 +98,7 @@ ActiveRecord::Schema.define(version: 20180109143058) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "amazon_item_attributes", "publications", on_update: :cascade, on_delete: :cascade
   add_foreign_key "publications", "serials", on_update: :cascade, on_delete: :cascade
   add_foreign_key "push_notification_fetch_logs", "push_notifications", on_update: :cascade, on_delete: :cascade
   add_foreign_key "push_notifications", "publications", on_update: :cascade, on_delete: :cascade

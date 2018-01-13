@@ -1,4 +1,4 @@
-class AmazonProductAdvertisingService
+class Amazon::ProductAdvertisingService
   def initialize
     @request = Vacuum.new('JP')
 
@@ -7,7 +7,7 @@ class AmazonProductAdvertisingService
     # gem が環境変数の値を勝手に使ってくれる
   end
 
-  def detail_page_url(title)
+  def search_item(title)
     try_count = 0
     response = nil
 
@@ -32,6 +32,6 @@ class AmazonProductAdvertisingService
 
     return nil if items.count == 0
 
-    items.first['DetailPageURL']
+    items.first
   end
 end
