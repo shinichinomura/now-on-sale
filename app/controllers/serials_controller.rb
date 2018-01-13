@@ -8,5 +8,7 @@ class SerialsController < ApplicationController
   def show
     @serial = Serial.find(params[:id])
     @publications = @serial.publications.order(date_min: :desc)
+
+    @next_publication = PublicationForecaster.new(@publications.map(&:date_min)).predict
   end
 end

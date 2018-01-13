@@ -1,3 +1,8 @@
+- if @next_publication
+  .next_publication
+    h2 = "「#{@serial.title}」の次巻発売予想日"
+    .date = "#{@next_publication.strftime('%Y年%m月%d日')}頃"
+
 h2
   = "「#{@serial.title}」の発売日一覧"
 
