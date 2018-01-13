@@ -59,6 +59,38 @@ function onFetch(event) {
   );
 }
 
+function onPush(event) {
+  event.waitUntil(
+    self.registration.pushManager.getSubscription()
+      .then(function(subscription) {
+        if (subscription) {
+          return subscription.endpoint
+        }
+        throw new Error('User not subscribed')
+    })
+    .then(function(endpoint) {
+      var registration_id = endpoint.replace("https://android.googleapis.com/gcm/send/", "");
+
+      return fetch('/push_notifications/' + registration_id + '/shift')
+    })
+    .then(function(response) {
+      if (response.status === 200) {
+        return response.json()
+      }
+      throw new Error('notification api response error')
+    })
+    .then(function(response) {
+      return self.registration.showNotification(
+        response.title, {
+          icon: '<%= image_path 'app-icon/192x192.png' %>',
+          body: response.body
+        }
+      )
+    })
+  )
+}
+
 self.addEventListener('install', onInstall);
 self.addEventListener('activate', onActivate);
 self.addEventListener('fetch', onFetch);
+self.addEventListener('push', onPush);
