@@ -1,6 +1,3 @@
-#Header
-  = image_tag 'logo@2x.png', size: '172x40'
-
 - unless @current_user.present?
   .login
     = link_to '/auth/twitter', class: 'twitter-login' do
