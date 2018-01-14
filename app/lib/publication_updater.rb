@@ -95,12 +95,7 @@ class PublicationUpdater
 
   def update!
     fetch.each do |rakuten_book_publication_item|
-      serial = Serial.find_or_create_by!(title: rakuten_book_publication_item.series_title)
-
-      serial.publications.find_or_initialize_by(title: rakuten_book_publication_item.title) do |publication|
-        publication.date_min = rakuten_book_publication_item.date_min
-        publication.date_max = rakuten_book_publication_item.date_max
-      end.save!
+      PublicationPersistenceService.new(rakuten_book_publication_item).save!
     end
   end
 
