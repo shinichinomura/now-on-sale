@@ -12,12 +12,19 @@ class PushNotificationsController < ApplicationController
 
     if notification.present?
       notification.fetch_logs.create!
-      body = "今日は#{notification.publication.title}の発売日です。"
+      publication = notification.publication
+
+      body = "今日は#{publication.title}の発売日です。"
+
+      if publication.amazon_item_attribute.present?
+        link_to = publication.amazon_item_attribute.detail_page_url
+      end
     end
 
     render json: {
       'title': title,
-      'body': body
+      'body': body,
+      'link_to': link_to
     }
   end
 end

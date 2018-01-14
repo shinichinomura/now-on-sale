@@ -83,7 +83,10 @@ function onPush(event) {
       return self.registration.showNotification(
         response.title, {
           icon: '<%= image_path 'app-icon/192x192.png' %>',
-          body: response.body
+          body: response.body,
+          data: {
+            link_to: response.link_to
+          }
         }
       )
     })
@@ -94,3 +97,11 @@ self.addEventListener('install', onInstall);
 self.addEventListener('activate', onActivate);
 self.addEventListener('fetch', onFetch);
 self.addEventListener('push', onPush);
+
+self.addEventListener("notificationclick", function(event) {
+  event.notification.close();
+
+  if(event.notification.data.link_to) {
+    clients.openWindow(event.notification.data.link_to);
+  }
+}, false);
