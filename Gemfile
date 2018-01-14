@@ -61,6 +61,7 @@ group :development, :test do
   gem 'capistrano3-puma', require: false
   gem 'capistrano-rails-console', require: false
   gem 'capistrano-clockwork'
+  gem 'capistrano-sidekiq'
 end
 
 group :development do

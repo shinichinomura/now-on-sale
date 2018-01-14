@@ -73,6 +73,9 @@ GEM
     capistrano-rails-console (2.2.1)
       capistrano (>= 3.5.0, < 4.0.0)
       sshkit-interactive (~> 0.2.0)
+    capistrano-sidekiq (0.20.0)
+      capistrano (>= 3.9.0)
+      sidekiq (>= 3.4)
     capistrano3-puma (3.1.1)
       capistrano (~> 3.7)
       capistrano-bundler
@@ -364,6 +367,7 @@ DEPENDENCIES
   capistrano-clockwork
   capistrano-rails
   capistrano-rails-console
+  capistrano-sidekiq
   capistrano3-puma
   capybara (~> 2.13)
   clockwork

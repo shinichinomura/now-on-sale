@@ -39,3 +39,6 @@ append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/syst
 # set :ssh_options, verify_host_key: :secure
 
 set :clockwork_file, "config/clock.rb"
+
+set :sidekiq_concurrency, 1
+set :sidekiq_monit_conf_dir, '/etc/monit.d'
