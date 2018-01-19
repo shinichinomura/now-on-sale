@@ -7,8 +7,12 @@ module Clockwork
     Rails.logger.info("Running #{job}")
   end
 
-  every(1.day, 'notify publications', :at => '10:00') do
+  every(1.day, 'notify publications', at: '10:00') do
     PublicationNotifier.notify_all
+  end
+
+  every(1.day, 'send push notifications', at: '10:00') do
+    PushNotificationSender.new.send_all
   end
 
   every(1.day, 'update publications in this month') do
