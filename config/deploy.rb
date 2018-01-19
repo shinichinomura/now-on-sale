@@ -42,3 +42,7 @@ set :clockwork_file, "config/clock.rb"
 
 set :sidekiq_concurrency, 1
 set :sidekiq_monit_conf_dir, '/etc/monit.d'
+
+set :rollbar_token, ENV['ROLLBAR_ACCESS_TOKEN']
+set :rollbar_env, Proc.new { fetch :stage }
+set :rollbar_role, Proc.new { :app }
