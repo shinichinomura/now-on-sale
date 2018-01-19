@@ -4,7 +4,7 @@
     .date = "#{@next_publication.strftime('%Y年%m月%d日')}頃"
 
 h2
-  = "「#{@serial.title}」の発売日一覧"
+  = @page_title
 
 ul.serial-publication-list
   - @publications.each do |publication|

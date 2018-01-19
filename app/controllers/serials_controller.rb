@@ -10,5 +10,7 @@ class SerialsController < ApplicationController
     @publications = @serial.publications.order(date_min: :desc)
 
     @next_publication = PublicationForecaster.new(@publications.map(&:date_min)).predict
+
+    @page_title = "「#{@serial.title}」の発売日一覧"
   end
 end
