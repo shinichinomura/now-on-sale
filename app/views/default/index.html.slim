@@ -38,3 +38,13 @@
               | 購読
 
 = javascript_pack_tag 'serials/index'
+
+.recent_publications
+  h2
+    | 最近発売の新刊コミック
+  ul
+    - @recent_publications.each do |publication|
+      li
+        span
+          = link_to publication.title, serial_path(publication.serial)
+        span.date = publication.date

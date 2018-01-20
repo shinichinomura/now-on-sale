@@ -2,6 +2,44 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@mixin book-list {
+  padding: 0;
+  margin: 0;
+
+  li {
+    list-style: none;
+    border-bottom: 1px solid #ccc;
+    font-size: 1.8rem;
+    padding: .8rem;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+@mixin serial-list {
+  @include book-list;
+
+  li {
+    button {
+      font-size: 1.6rem;
+      white-space: nowrap;
+    }
+  }
+}
+
+@mixin publication-list {
+  @include book-list;
+
+  li {
+    span.date {
+      font-size: 1.2rem;
+      color: #666;
+      white-space: nowrap;
+      margin-left: 1rem;
+    }
+  }
+}
+
 #SerialsIndex {
   .search {
     text-align: center;
@@ -24,21 +62,7 @@
     }
 
     ul {
-      padding: 0;
-      margin: 0;
-
-      li {
-        list-style: none;
-        border-bottom: 1px solid #ccc;
-        font-size: 1.8rem;
-        padding: .8rem;
-        display: flex;
-        justify-content: space-between;
-
-        button {
-          font-size: 1.6rem;
-        }
-      }
+      @include serial-list;
     }
   }
 }
@@ -49,20 +73,16 @@
   }
 
   ul {
-    padding: 0;
-    margin: 0;
+    @include serial-list;
+  }
+}
 
-    li {
-      list-style: none;
-      border-bottom: 1px solid #ccc;
-      font-size: 1.8rem;
-      padding: .8rem;
-      display: flex;
-      justify-content: space-between;
+.recent_publications {
+  h2 {
+    margin-bottom: 0;
+  }
 
-      button {
-        font-size: 1.6rem;
-      }
-    }
+  ul {
+    @include publication-list;
   }
 }
