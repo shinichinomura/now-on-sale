@@ -53,6 +53,16 @@ h2 {
 
 #Header {
   padding: 1rem;
+  height: 40px;
+
+  a {
+    display: inline-block;
+    height: 40px;
+  }
+
+  + h2 {
+    margin-top: 0;
+  }
 }
 
 .login {
