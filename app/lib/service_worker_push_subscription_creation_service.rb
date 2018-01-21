@@ -12,7 +12,7 @@ class ServiceWorkerPushSubscriptionCreationService
         subscription.histories.create!(
           action: 'create',
           user_agent: request.user_agent,
-          ip_address: request.env["HTTP_X_FORWARDED_FOR"] || request.remote_ip
+          ip_address: request.remote_ip
         )
       end
 
