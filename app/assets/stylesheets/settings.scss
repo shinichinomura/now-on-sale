@@ -1,0 +1,27 @@
+// Place all the styles related to the settings controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+table.settings {
+  width: 90%;
+  margin: auto;
+
+  td.checkbox {
+    padding-left: 1rem;
+    white-space: nowrap;
+    text-align: right;
+  }
+}
+
+table.push_subscriptions {
+  tr {
+    td {
+      padding-bottom: 1rem;
+
+      .details {
+        font-size: 1.2rem;
+        color: #999;
+      }
+    }
+  }
+}

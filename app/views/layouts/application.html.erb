@@ -32,8 +32,13 @@
       </div>
     <% end %>
     <div id="Header">
-      <%= link_to root_path do %>
+      <%= link_to root_path, class: 'logo' do %>
         <%= image_tag 'logo@2x.png', size: '172x40' %>
+      <% end %>
+      <% if logged_in? %>
+        <%= link_to settings_path, class: 'settings' do %>
+          <%= fa_icon 'cog' %>
+        <% end %>
       <% end %>
     </div>
     <%= yield %>

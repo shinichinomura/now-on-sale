@@ -8,4 +8,8 @@ module ApplicationHelper
       "#{site_description} - NowOnSale"
     end
   end
+
+  def logged_in?
+    @current_user.present?
+  end
 end

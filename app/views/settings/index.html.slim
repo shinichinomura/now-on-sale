@@ -1,0 +1,36 @@
+h2
+  | Twitter通知設定
+
+= form_tag '/twitter_notification_settings', method: :put
+  table.settings
+    tr
+      td
+        = "@#{@current_user.twitter_auth.nickname}"
+      td.checkbox
+        = check_box_tag('twitter_notification', 1, @twitter_notification_enabled)
+        = label_tag 'twitter_notification', '有効'
+  .save
+    = submit_tag '設定を保存'
+
+h2
+  | ブラウザ通知設定
+
+= form_tag '/service_worker_push_notification_settings', method: :put
+  table.settings.push_subscriptions
+    - @push_subscriptions.each do |subscription|
+      tr
+        td
+          .user_agent
+            = subscription.user_agent
+          .details
+            .created_on
+              | 登録日：
+              = subscription.created_at.strftime('%Y年%-m月%-d日')
+            .ip_address
+              | 登録時IPアドレス：
+              = subscription.ip_address
+        td.checkbox
+          = @push_subscription_form.check_box_tag_for(subscription)
+          = @push_subscription_form.label_tag_for(subscription, '有効')
+  .save
+    = submit_tag '設定を保存'

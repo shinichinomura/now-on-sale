@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180121041213) do
+ActiveRecord::Schema.define(version: 20180121122345) do
 
   create_table "amazon_item_attributes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "publication_id", null: false
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20180121041213) do
   create_table "service_worker_push_subscriptions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id", null: false
     t.string "registration_id", limit: 256, null: false
+    t.boolean "enabled", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id", "registration_id"], name: "index_sw_push_subscriptions_on_user_id_and_registration_id", unique: true
@@ -103,6 +104,15 @@ ActiveRecord::Schema.define(version: 20180121041213) do
     t.index ["user_id"], name: "index_twitter_auths_on_user_id", unique: true
   end
 
+  create_table "twitter_notification_settings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id", null: false
+    t.string "nickname", limit: 64, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["nickname"], name: "index_twitter_notification_settings_on_nickname", unique: true
+    t.index ["user_id"], name: "index_twitter_notification_settings_on_user_id", unique: true
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -118,4 +128,5 @@ ActiveRecord::Schema.define(version: 20180121041213) do
   add_foreign_key "subscriptions", "serials", on_update: :cascade, on_delete: :cascade
   add_foreign_key "subscriptions", "users", on_update: :cascade, on_delete: :cascade
   add_foreign_key "twitter_auths", "users", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "twitter_notification_settings", "users", on_update: :cascade, on_delete: :cascade
 end
