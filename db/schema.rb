@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180113125719) do
+ActiveRecord::Schema.define(version: 20180121041213) do
 
   create_table "amazon_item_attributes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "publication_id", null: false
@@ -53,6 +53,16 @@ ActiveRecord::Schema.define(version: 20180113125719) do
     t.string "title", limit: 256, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "service_worker_push_subscription_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "service_worker_push_subscription_id", null: false
+    t.string "action", limit: 16, null: false
+    t.string "user_agent", limit: 256, null: false
+    t.string "ip_address", limit: 16, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["service_worker_push_subscription_id"], name: "fk_rails_fa52d602e7"
   end
 
   create_table "service_worker_push_subscriptions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -103,6 +113,7 @@ ActiveRecord::Schema.define(version: 20180113125719) do
   add_foreign_key "push_notification_fetch_logs", "push_notifications", on_update: :cascade, on_delete: :cascade
   add_foreign_key "push_notifications", "publications", on_update: :cascade, on_delete: :cascade
   add_foreign_key "push_notifications", "service_worker_push_subscriptions", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "service_worker_push_subscription_histories", "service_worker_push_subscriptions", on_update: :cascade, on_delete: :cascade
   add_foreign_key "service_worker_push_subscriptions", "users", on_update: :cascade, on_delete: :cascade
   add_foreign_key "subscriptions", "serials", on_update: :cascade, on_delete: :cascade
   add_foreign_key "subscriptions", "users", on_update: :cascade, on_delete: :cascade

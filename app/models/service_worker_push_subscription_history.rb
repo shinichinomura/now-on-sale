@@ -1,0 +1,3 @@
+class ServiceWorkerPushSubscriptionHistory < ApplicationRecord
+  belongs_to :service_worker_push_subscription
+end

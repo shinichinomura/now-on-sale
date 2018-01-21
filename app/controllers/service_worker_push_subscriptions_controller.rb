@@ -3,13 +3,16 @@ class ServiceWorkerPushSubscriptionsController < ApplicationController
 
   def create
     begin
-      ServiceWorkerPushSubscription.find_or_initialize_by(
+      ServiceWorkerPushSubscriptionCreationService.create!(
         user_id: current_user.id,
-        registration_id: params[:registration_id]
-      ).save!
+        registration_id: params[:registration_id],
+        request: request
+      )
 
       render json: { result: 'success' }
-    rescue
+    rescue => e
+      Rollbar.error(e)
+
       render json: { result: 'error' }
     end
   end
