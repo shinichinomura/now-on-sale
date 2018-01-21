@@ -74,6 +74,11 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 
   gem 'foreman'
+
+  gem 'pry-rails'
+  gem 'pry-doc'
+  gem 'pry-byebug'
+  gem 'pry-stack_explorer'
 end
 
 group :production do
