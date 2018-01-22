@@ -11,7 +11,7 @@ class PublicationNotifier
   end
 
   def notify
-    notifiers = NotifierFactory.new(user_id: @user.id).notifiers
+    notifiers = NotifierFactory.new(user: @user).notifiers
     publications = publications_to_be_notified
 
     notifiers.each do |notifier|

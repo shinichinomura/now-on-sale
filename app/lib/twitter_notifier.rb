@@ -13,7 +13,7 @@ class TwitterNotifier
   def notify(publications)
     publications.each do |publication|
       status_parts = []
-      status_parts << "@#{@user.twitter_auth.nickname}"
+      status_parts << "@#{@user.twitter_notification_setting.nickname}"
       status_parts << "今日は「#{publication.title}」の発売日だよ。"
 
       if publication.amazon_item_attribute.present?
