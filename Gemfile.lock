@@ -191,7 +191,7 @@ GEM
     multi_xml (0.6.0)
     multipart-post (2.0.0)
     mustermann (1.0.2)
-    mysql2 (0.5.0)
+    mysql2 (0.4.10)
     naught (1.1.0)
     net-http-digest_auth (1.4.1)
     net-http-persistent (2.9.4)
@@ -409,7 +409,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   mechanize
-  mysql2
+  mysql2 (~> 0.4.0)
   omniauth-twitter
   pry-byebug
   pry-doc
