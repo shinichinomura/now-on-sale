@@ -1,10 +1,10 @@
 {
-  "application.js": "/packs/application-a04567588c89e764439a.js",
-  "application.js.map": "/packs/application-a04567588c89e764439a.js.map",
+  "application.js": "/packs/application-a724a09bf4597398020d.js",
+  "application.js.map": "/packs/application-a724a09bf4597398020d.js.map",
   "hello_vue.css": "/packs/hello_vue-9cb5a7334a6577c3422968b9b9970b2f.css",
   "hello_vue.css.map": "/packs/hello_vue-9cb5a7334a6577c3422968b9b9970b2f.css.map",
-  "hello_vue.js": "/packs/hello_vue-da7588a660476e398306.js",
-  "hello_vue.js.map": "/packs/hello_vue-da7588a660476e398306.js.map",
-  "serials/index.js": "/packs/serials/index-6ff50aad6fe8a0b6853d.js",
-  "serials/index.js.map": "/packs/serials/index-6ff50aad6fe8a0b6853d.js.map"
+  "hello_vue.js": "/packs/hello_vue-468e2bfcc635726f7515.js",
+  "hello_vue.js.map": "/packs/hello_vue-468e2bfcc635726f7515.js.map",
+  "serials/index.js": "/packs/serials/index-67b1b65eef28a7234e48.js",
+  "serials/index.js.map": "/packs/serials/index-67b1b65eef28a7234e48.js.map"
 }
